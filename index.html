@@ -37,32 +37,18 @@
     }
 
     body::after {
-      content: "";
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 1;
-      height: 190px;
-      background:
-        radial-gradient(ellipse at 7% 100%, #0d2430 0 50px, transparent 52px),
-        radial-gradient(ellipse at 28% 104%, #15313b 0 68px, transparent 70px),
-        radial-gradient(ellipse at 62% 103%, #0c2a35 0 58px, transparent 60px),
-        radial-gradient(ellipse at 88% 105%, #173844 0 76px, transparent 78px),
-        linear-gradient(180deg, transparent, rgba(4, 30, 43, 0.96) 44%, #041b28);
-      pointer-events: none;
+      content: none;
     }
 
     .ocean-life,
-    .bubbles,
-    .seafloor {
+    .bubbles {
       position: fixed;
       inset: 0;
       pointer-events: none;
     }
 
     .ocean-life {
-      z-index: 4;
+      z-index: 2;
       overflow: hidden;
     }
 
@@ -75,7 +61,7 @@
       text-shadow: 0 6px 18px rgba(0, 16, 28, 0.42);
       filter: drop-shadow(0 8px 18px rgba(0, 20, 32, 0.24));
       animation:
-        swim-across var(--duration) linear infinite,
+        swim-across-reverse var(--duration) linear infinite,
         swim-bob 4.6s ease-in-out infinite alternate;
       animation-delay: var(--delay);
       opacity: 0.9;
@@ -86,16 +72,7 @@
       font-size: var(--size);
       line-height: 1;
       display: inline-block;
-    }
-
-    .creature small {
-      padding: 3px 8px;
-      border: 1px solid rgba(201, 244, 250, 0.42);
-      border-radius: 999px;
-      background: rgba(4, 50, 72, 0.34);
-      color: rgba(232, 251, 255, 0.9);
-      font-size: 0.76rem;
-      backdrop-filter: blur(5px);
+      transform: scaleX(-1);
     }
 
     .nautilus {
@@ -140,14 +117,6 @@
       --delay: -16s;
     }
 
-    .reverse {
-      animation-name: swim-across-reverse, swim-bob;
-    }
-
-    .reverse span {
-      transform: scaleX(-1);
-    }
-
     .bubbles {
       z-index: 1;
       background:
@@ -162,11 +131,29 @@
     }
 
     .seafloor {
-      top: auto;
+      position: relative;
       z-index: 2;
-      height: 210px;
-      bottom: 0;
+      height: 300px;
+      margin-top: 28px;
       overflow: hidden;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, transparent 0, rgba(5, 38, 53, 0.42) 30%, rgba(4, 25, 36, 0.9) 68%, #031923 100%);
+    }
+
+    .seafloor::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 180px;
+      background:
+        radial-gradient(ellipse at 7% 100%, #0d2430 0 50px, transparent 52px),
+        radial-gradient(ellipse at 28% 104%, #15313b 0 68px, transparent 70px),
+        radial-gradient(ellipse at 62% 103%, #0c2a35 0 58px, transparent 60px),
+        radial-gradient(ellipse at 88% 105%, #173844 0 76px, transparent 78px),
+        linear-gradient(180deg, transparent, rgba(4, 30, 43, 0.96) 44%, #041b28);
     }
 
     .seaweed,
@@ -229,9 +216,9 @@
 
     main {
       position: relative;
-      z-index: 3;
+      z-index: 4;
       max-width: 760px;
-      margin: 48px auto;
+      margin: 48px auto 0;
       padding: 32px;
       background: rgba(6, 48, 70, 0.72);
       border-radius: 8px;
@@ -421,7 +408,7 @@
 
     @media (max-width: 760px) {
       main {
-        margin: 24px 14px 140px;
+        margin: 24px 14px 0;
         padding: 18px;
       }
 
@@ -430,41 +417,24 @@
         font-size: 2rem;
       }
 
-      .creature small {
-        display: none;
-      }
-
       .nautilus,
       .shark,
       .turtle {
         --size: 3.4rem;
       }
 
-      .ocean-life {
-        z-index: 2;
-      }
     }
   </style>
 </head>
 <body>
   <div class="bubbles" aria-hidden="true"></div>
   <div class="ocean-life" aria-hidden="true">
-    <div class="creature nautilus"><span>🐚</span><small>オウムガイ</small></div>
-    <div class="creature shark reverse"><span>🦈</span><small>サメ</small></div>
-    <div class="creature turtle"><span>🐢</span><small>カメ</small></div>
-    <div class="creature fish"><span>🐠</span><small>熱帯魚</small></div>
-    <div class="creature school reverse"><span>🐟 🐟 🐟</span><small>魚群</small></div>
-    <div class="creature jellyfish"><span>🪼</span><small>クラゲ</small></div>
-  </div>
-  <div class="seafloor" aria-hidden="true">
-    <div class="seaweed" style="left: 6%; --height: 118px;"></div>
-    <div class="seaweed" style="left: 15%; --height: 82px; animation-delay: -1s;"></div>
-    <div class="coral" style="left: 24%;"></div>
-    <div class="rock" style="left: 37%; --width: 128px; --height: 58px;"></div>
-    <div class="seaweed" style="left: 56%; --height: 108px; animation-delay: -1.8s;"></div>
-    <div class="coral" style="left: 68%; filter: hue-rotate(48deg) drop-shadow(0 8px 10px rgba(0, 16, 24, 0.28));"></div>
-    <div class="rock" style="left: 80%; --width: 150px; --height: 72px;"></div>
-    <div class="seaweed" style="left: 92%; --height: 96px; animation-delay: -0.6s;"></div>
+    <div class="creature nautilus"><span>🐚</span></div>
+    <div class="creature shark"><span>🦈</span></div>
+    <div class="creature turtle"><span>🐢</span></div>
+    <div class="creature fish"><span>🐠</span></div>
+    <div class="creature school"><span>🐟 🐟 🐟</span></div>
+    <div class="creature jellyfish"><span>🪼</span></div>
   </div>
   <main>
     <h1><span>生物と材料を結びつける</span></h1>
@@ -546,5 +516,15 @@
       </ul>
     </details>
   </main>
+  <div class="seafloor" aria-hidden="true">
+    <div class="seaweed" style="left: 6%; --height: 118px;"></div>
+    <div class="seaweed" style="left: 15%; --height: 82px; animation-delay: -1s;"></div>
+    <div class="coral" style="left: 24%;"></div>
+    <div class="rock" style="left: 37%; --width: 128px; --height: 58px;"></div>
+    <div class="seaweed" style="left: 56%; --height: 108px; animation-delay: -1.8s;"></div>
+    <div class="coral" style="left: 68%; filter: hue-rotate(48deg) drop-shadow(0 8px 10px rgba(0, 16, 24, 0.28));"></div>
+    <div class="rock" style="left: 80%; --width: 150px; --height: 72px;"></div>
+    <div class="seaweed" style="left: 92%; --height: 96px; animation-delay: -0.6s;"></div>
+  </div>
 </body>
 </html>
