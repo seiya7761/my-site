@@ -132,13 +132,15 @@
     .seafloor {
       position: relative;
       z-index: 2;
-      height: 360px;
+      height: 420px;
       margin-top: 18px;
       overflow: hidden;
       pointer-events: none;
       background:
-        radial-gradient(ellipse at 50% 100%, rgba(73, 103, 97, 0.36) 0 42%, transparent 68%),
-        linear-gradient(180deg, transparent 0, rgba(5, 38, 53, 0.42) 20%, rgba(4, 25, 36, 0.92) 70%, #031923 100%);
+        linear-gradient(104deg, transparent 0 24%, rgba(209, 255, 247, 0.2) 25% 31%, transparent 32%),
+        linear-gradient(82deg, transparent 0 58%, rgba(209, 255, 247, 0.18) 59% 65%, transparent 66%),
+        radial-gradient(ellipse at 50% 8%, rgba(205, 255, 246, 0.38), transparent 42%),
+        linear-gradient(180deg, rgba(36, 173, 181, 0.18) 0, rgba(8, 92, 112, 0.56) 34%, rgba(4, 39, 55, 0.94) 82%, #031923 100%);
     }
 
     .seafloor::before {
@@ -146,37 +148,65 @@
       position: absolute;
       left: 0;
       right: 0;
-      bottom: 0;
-      height: 230px;
+      bottom: 74px;
+      height: 270px;
       background:
-        radial-gradient(ellipse at 18% 98%, #445b52 0 16%, transparent 17%),
-        radial-gradient(ellipse at 52% 106%, #61705f 0 34%, transparent 35%),
-        radial-gradient(ellipse at 86% 98%, #3a514b 0 22%, transparent 23%),
-        radial-gradient(ellipse at 50% 114%, #9a9679 0 58%, transparent 59%),
-        linear-gradient(180deg, transparent 0, rgba(67, 72, 58, 0.54) 40%, #24291f 100%);
+        radial-gradient(ellipse at 16% 84%, rgba(12, 63, 75, 0.88) 0 22%, transparent 23%),
+        radial-gradient(ellipse at 37% 74%, rgba(14, 82, 94, 0.58) 0 17%, transparent 18%),
+        radial-gradient(ellipse at 61% 76%, rgba(11, 74, 87, 0.62) 0 18%, transparent 19%),
+        radial-gradient(ellipse at 86% 82%, rgba(10, 58, 72, 0.9) 0 24%, transparent 25%),
+        linear-gradient(180deg, transparent 0, rgba(5, 34, 47, 0.78) 72%, transparent 73%);
+      filter: blur(0.4px);
     }
 
     .seafloor::after {
       content: "";
       position: absolute;
-      left: -5%;
-      right: -5%;
-      bottom: -34px;
-      height: 130px;
+      left: -8%;
+      right: -8%;
+      bottom: -24px;
+      height: 210px;
       background:
-        radial-gradient(ellipse at 14% 52%, rgba(222, 202, 142, 0.42) 0 2px, transparent 3px),
-        radial-gradient(ellipse at 31% 38%, rgba(222, 202, 142, 0.35) 0 1px, transparent 2px),
-        radial-gradient(ellipse at 57% 46%, rgba(222, 202, 142, 0.38) 0 2px, transparent 3px),
-        radial-gradient(ellipse at 78% 34%, rgba(222, 202, 142, 0.34) 0 1px, transparent 2px),
-        linear-gradient(178deg, #8f876d 0 28%, #625f4f 29% 54%, #31372d 55% 100%);
-      border-radius: 46% 54% 0 0 / 42% 42% 0 0;
-      box-shadow: inset 0 18px 32px rgba(255, 249, 203, 0.1);
+        radial-gradient(ellipse at 50% 22%, rgba(237, 220, 164, 0.82) 0 18%, transparent 19%),
+        radial-gradient(ellipse at 17% 66%, rgba(34, 48, 40, 0.72) 0 24%, transparent 25%),
+        radial-gradient(ellipse at 83% 66%, rgba(32, 45, 39, 0.76) 0 25%, transparent 26%),
+        radial-gradient(ellipse at 42% 52%, rgba(71, 91, 73, 0.36) 0 2px, transparent 3px),
+        radial-gradient(ellipse at 55% 42%, rgba(71, 91, 73, 0.32) 0 2px, transparent 3px),
+        linear-gradient(170deg, transparent 0 20%, #6f715a 21% 40%, #8d8361 41% 58%, #3c4436 59% 100%);
+      border-radius: 52% 48% 0 0 / 58% 58% 0 0;
+      box-shadow: inset 0 26px 42px rgba(255, 249, 203, 0.12);
     }
 
     .reef {
       position: absolute;
       inset: 0;
       z-index: 1;
+    }
+
+    .reef::before,
+    .reef::after {
+      content: "";
+      position: absolute;
+      bottom: 24px;
+      width: 36%;
+      height: 250px;
+      background:
+        radial-gradient(circle at 18% 76%, #f4a26e 0 22px, transparent 23px),
+        radial-gradient(circle at 36% 62%, #d98cae 0 20px, transparent 21px),
+        radial-gradient(circle at 58% 72%, #6dbb9b 0 26px, transparent 27px),
+        radial-gradient(circle at 76% 58%, #b9be7b 0 24px, transparent 25px),
+        radial-gradient(ellipse at 48% 96%, #2d443d 0 54%, transparent 55%);
+      filter: drop-shadow(0 16px 16px rgba(0, 12, 18, 0.26));
+    }
+
+    .reef::before {
+      left: -5%;
+      transform: rotate(-4deg);
+    }
+
+    .reef::after {
+      right: -5%;
+      transform: scaleX(-1) rotate(-4deg);
     }
 
     .reef-rock {
@@ -233,6 +263,7 @@
       position: absolute;
       bottom: var(--bottom);
       left: var(--left);
+      z-index: 3;
       width: var(--size);
       height: var(--size);
       background:
@@ -256,6 +287,37 @@
       font-size: 1.8rem;
       filter: drop-shadow(0 8px 8px rgba(0, 13, 20, 0.3));
       transform: rotate(-7deg);
+    }
+
+    .tube-coral {
+      position: absolute;
+      bottom: var(--bottom);
+      left: var(--left);
+      z-index: 4;
+      display: flex;
+      align-items: flex-end;
+      gap: 7px;
+      transform: rotate(var(--rotate));
+    }
+
+    .tube-coral span {
+      display: block;
+      width: 18px;
+      height: var(--height);
+      border-radius: 999px 999px 6px 6px;
+      background:
+        radial-gradient(circle at 50% 12%, rgba(255, 235, 194, 0.86) 0 4px, transparent 5px),
+        linear-gradient(180deg, #f6a05f, #bd633e);
+      box-shadow: inset -5px 0 8px rgba(87, 29, 25, 0.22);
+    }
+
+    .seafloor-detail {
+      position: absolute;
+      z-index: 5;
+      color: rgba(238, 193, 132, 0.9);
+      font-size: var(--size);
+      filter: drop-shadow(0 8px 8px rgba(0, 13, 20, 0.32));
+      transform: rotate(var(--rotate));
     }
 
     main {
@@ -679,18 +741,30 @@
   </main>
   <div class="seafloor" aria-hidden="true">
     <div class="reef">
-      <div class="reef-rock" style="--left: 2%; --bottom: 44px; --width: 220px; --height: 104px; --rotate: -7deg;"></div>
-      <div class="reef-rock" style="--left: 18%; --bottom: 74px; --width: 150px; --height: 72px; --rotate: 9deg;"></div>
-      <div class="reef-rock" style="--left: 58%; --bottom: 52px; --width: 260px; --height: 118px; --rotate: 5deg;"></div>
-      <div class="reef-rock" style="--left: 77%; --bottom: 88px; --width: 180px; --height: 84px; --rotate: -10deg;"></div>
-      <div class="seaweed" style="--left: 9%; --bottom: 102px; --height: 126px;"></div>
-      <div class="seaweed" style="--left: 14%; --bottom: 90px; --height: 86px; animation-delay: -1s;"></div>
-      <div class="seaweed" style="--left: 64%; --bottom: 108px; --height: 116px; animation-delay: -1.8s;"></div>
-      <div class="seaweed" style="--left: 72%; --bottom: 82px; --height: 92px; animation-delay: -0.6s;"></div>
-      <div class="coral" style="--left: 25%; --bottom: 82px; --size: 82px;"></div>
-      <div class="coral" style="--left: 50%; --bottom: 64px; --size: 64px; filter: hue-rotate(48deg) drop-shadow(0 8px 10px rgba(0, 16, 24, 0.28));"></div>
-      <div class="coral" style="--left: 86%; --bottom: 92px; --size: 74px; filter: hue-rotate(118deg) drop-shadow(0 8px 10px rgba(0, 16, 24, 0.28));"></div>
+      <div class="reef-rock" style="--left: -2%; --bottom: 36px; --width: 260px; --height: 128px; --rotate: -7deg;"></div>
+      <div class="reef-rock" style="--left: 13%; --bottom: 92px; --width: 170px; --height: 88px; --rotate: 9deg;"></div>
+      <div class="reef-rock" style="--left: 62%; --bottom: 48px; --width: 290px; --height: 136px; --rotate: 5deg;"></div>
+      <div class="reef-rock" style="--left: 81%; --bottom: 112px; --width: 190px; --height: 92px; --rotate: -10deg;"></div>
+      <div class="seaweed" style="--left: 6%; --bottom: 132px; --height: 146px;"></div>
+      <div class="seaweed" style="--left: 12%; --bottom: 124px; --height: 104px; animation-delay: -1s;"></div>
+      <div class="seaweed" style="--left: 77%; --bottom: 134px; --height: 134px; animation-delay: -1.8s;"></div>
+      <div class="seaweed" style="--left: 88%; --bottom: 112px; --height: 108px; animation-delay: -0.6s;"></div>
+      <div class="coral" style="--left: 18%; --bottom: 102px; --size: 92px;"></div>
+      <div class="coral" style="--left: 55%; --bottom: 86px; --size: 72px; filter: hue-rotate(48deg) drop-shadow(0 8px 10px rgba(0, 16, 24, 0.28));"></div>
+      <div class="coral" style="--left: 83%; --bottom: 126px; --size: 86px; filter: hue-rotate(118deg) drop-shadow(0 8px 10px rgba(0, 16, 24, 0.28));"></div>
+      <div class="tube-coral" style="--left: 3%; --bottom: 54px; --rotate: 10deg;">
+        <span style="--height: 82px;"></span>
+        <span style="--height: 118px;"></span>
+        <span style="--height: 96px;"></span>
+      </div>
+      <div class="tube-coral" style="--left: 70%; --bottom: 64px; --rotate: -8deg;">
+        <span style="--height: 92px;"></span>
+        <span style="--height: 68px;"></span>
+        <span style="--height: 110px;"></span>
+      </div>
       <div class="shell-bed"><span>◖</span><span>◜</span><span>◠</span></div>
+      <div class="seafloor-detail" style="--size: 2.3rem; --rotate: 18deg; left: 87%; bottom: 44px;">☆</div>
+      <div class="seafloor-detail" style="--size: 2rem; --rotate: -8deg; left: 58%; bottom: 54px;">♋</div>
     </div>
   </div>
 </body>
