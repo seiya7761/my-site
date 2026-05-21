@@ -132,12 +132,13 @@
     .seafloor {
       position: relative;
       z-index: 2;
-      height: 300px;
-      margin-top: 28px;
+      height: 360px;
+      margin-top: 18px;
       overflow: hidden;
       pointer-events: none;
       background:
-        linear-gradient(180deg, transparent 0, rgba(5, 38, 53, 0.42) 30%, rgba(4, 25, 36, 0.9) 68%, #031923 100%);
+        radial-gradient(ellipse at 50% 100%, rgba(73, 103, 97, 0.36) 0 42%, transparent 68%),
+        linear-gradient(180deg, transparent 0, rgba(5, 38, 53, 0.42) 20%, rgba(4, 25, 36, 0.92) 70%, #031923 100%);
     }
 
     .seafloor::before {
@@ -146,23 +147,59 @@
       left: 0;
       right: 0;
       bottom: 0;
-      height: 180px;
+      height: 230px;
       background:
-        radial-gradient(ellipse at 7% 100%, #0d2430 0 50px, transparent 52px),
-        radial-gradient(ellipse at 28% 104%, #15313b 0 68px, transparent 70px),
-        radial-gradient(ellipse at 62% 103%, #0c2a35 0 58px, transparent 60px),
-        radial-gradient(ellipse at 88% 105%, #173844 0 76px, transparent 78px),
-        linear-gradient(180deg, transparent, rgba(4, 30, 43, 0.96) 44%, #041b28);
+        radial-gradient(ellipse at 18% 98%, #445b52 0 16%, transparent 17%),
+        radial-gradient(ellipse at 52% 106%, #61705f 0 34%, transparent 35%),
+        radial-gradient(ellipse at 86% 98%, #3a514b 0 22%, transparent 23%),
+        radial-gradient(ellipse at 50% 114%, #9a9679 0 58%, transparent 59%),
+        linear-gradient(180deg, transparent 0, rgba(67, 72, 58, 0.54) 40%, #24291f 100%);
     }
 
-    .seaweed,
-    .coral,
-    .rock {
+    .seafloor::after {
+      content: "";
       position: absolute;
-      bottom: 22px;
+      left: -5%;
+      right: -5%;
+      bottom: -34px;
+      height: 130px;
+      background:
+        radial-gradient(ellipse at 14% 52%, rgba(222, 202, 142, 0.42) 0 2px, transparent 3px),
+        radial-gradient(ellipse at 31% 38%, rgba(222, 202, 142, 0.35) 0 1px, transparent 2px),
+        radial-gradient(ellipse at 57% 46%, rgba(222, 202, 142, 0.38) 0 2px, transparent 3px),
+        radial-gradient(ellipse at 78% 34%, rgba(222, 202, 142, 0.34) 0 1px, transparent 2px),
+        linear-gradient(178deg, #8f876d 0 28%, #625f4f 29% 54%, #31372d 55% 100%);
+      border-radius: 46% 54% 0 0 / 42% 42% 0 0;
+      box-shadow: inset 0 18px 32px rgba(255, 249, 203, 0.1);
+    }
+
+    .reef {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .reef-rock {
+      position: absolute;
+      bottom: var(--bottom);
+      left: var(--left);
+      width: var(--width);
+      height: var(--height);
+      border-radius: 52% 48% 42% 38%;
+      background:
+        radial-gradient(circle at 36% 28%, rgba(255, 255, 255, 0.13) 0 10%, transparent 11%),
+        radial-gradient(circle at 68% 56%, rgba(0, 0, 0, 0.18) 0 16%, transparent 17%),
+        linear-gradient(140deg, #596d68, #22352f 72%, #14231f);
+      box-shadow:
+        inset 16px 18px 24px rgba(255, 255, 255, 0.08),
+        0 18px 26px rgba(0, 13, 18, 0.34);
+      transform: rotate(var(--rotate));
     }
 
     .seaweed {
+      position: absolute;
+      bottom: var(--bottom);
+      left: var(--left);
       width: 18px;
       height: var(--height);
       border-radius: 100% 0 100% 0;
@@ -193,8 +230,11 @@
     }
 
     .coral {
-      width: 78px;
-      height: 78px;
+      position: absolute;
+      bottom: var(--bottom);
+      left: var(--left);
+      width: var(--size);
+      height: var(--size);
       background:
         radial-gradient(circle at 50% 20%, #ff8790 0 9px, transparent 10px),
         radial-gradient(circle at 28% 38%, #ffb15e 0 8px, transparent 9px),
@@ -205,12 +245,17 @@
       filter: drop-shadow(0 8px 10px rgba(0, 16, 24, 0.28));
     }
 
-    .rock {
-      width: var(--width);
-      height: var(--height);
-      border-radius: 48% 52% 40% 36%;
-      background: linear-gradient(140deg, #46616a, #172f39);
-      box-shadow: inset 12px 10px 22px rgba(255, 255, 255, 0.08);
+    .shell-bed {
+      position: absolute;
+      right: 15%;
+      bottom: 42px;
+      z-index: 2;
+      display: flex;
+      gap: 12px;
+      color: rgba(244, 229, 196, 0.88);
+      font-size: 1.8rem;
+      filter: drop-shadow(0 8px 8px rgba(0, 13, 20, 0.3));
+      transform: rotate(-7deg);
     }
 
     main {
@@ -565,32 +610,16 @@
     <h2>研究者として</h2>
     <div class="qa-list">
       <section class="qa-item">
-        <h3>Q. 研究分野を一言でいうと何ですか？</h3>
-        <p>バイオミネラルの研究をしています。</p>
+        <h3>Q. 何を研究していますか？</h3>
+        <p>バイオミネラルの中でも、特に貝殻を研究しています。</p>
       </section>
       <section class="qa-item">
-        <h3>Q. どのようなテーマに取り組んでいますか？</h3>
-        <p>貝殻の微細構造、炭酸カルシウムの合成制御、機能性材料の創出に取り組んでいます。</p>
+        <h3>Q. どのような点に注目していますか？</h3>
+        <p>貝殻の微細構造と機能に注目し、光学機能や接着機能の仕組みを調べています。</p>
       </section>
       <section class="qa-item">
-        <h3>Q. バイオミネラルの中でも、特に何を研究していますか？</h3>
-        <p>貝殻を研究しています。</p>
-      </section>
-      <section class="qa-item">
-        <h3>Q. 貝殻のどんなところに注目していますか？</h3>
-        <p>貝殻の微細構造と機能に注目しています。</p>
-      </section>
-      <section class="qa-item">
-        <h3>Q. 具体的にどのような機能に着目していますか？</h3>
-        <p>光学機能や接着機能に着目しています。</p>
-      </section>
-      <section class="qa-item">
-        <h3>Q. 研究で注目していることは何ですか？</h3>
-        <p>生物がつくる構造や機能を手がかりに、環境に優しい材料開発へつなげることに注目しています。</p>
-      </section>
-      <section class="qa-item">
-        <h3>Q. 将来的にどのような材料や技術につなげたいですか？</h3>
-        <p>低環境負荷なプロセスで、プラスチック代替材料をつくることを目指しています。</p>
+        <h3>Q. 何を目指していますか？</h3>
+        <p>生物がつくる構造や機能を手がかりに、炭酸カルシウムの合成制御や機能性材料の創出へ展開し、低環境負荷なプロセスでプラスチック代替材料をつくることを目指しています。</p>
       </section>
     </div>
 
@@ -649,14 +678,20 @@
     </details>
   </main>
   <div class="seafloor" aria-hidden="true">
-    <div class="seaweed" style="left: 6%; --height: 118px;"></div>
-    <div class="seaweed" style="left: 15%; --height: 82px; animation-delay: -1s;"></div>
-    <div class="coral" style="left: 24%;"></div>
-    <div class="rock" style="left: 37%; --width: 128px; --height: 58px;"></div>
-    <div class="seaweed" style="left: 56%; --height: 108px; animation-delay: -1.8s;"></div>
-    <div class="coral" style="left: 68%; filter: hue-rotate(48deg) drop-shadow(0 8px 10px rgba(0, 16, 24, 0.28));"></div>
-    <div class="rock" style="left: 80%; --width: 150px; --height: 72px;"></div>
-    <div class="seaweed" style="left: 92%; --height: 96px; animation-delay: -0.6s;"></div>
+    <div class="reef">
+      <div class="reef-rock" style="--left: 2%; --bottom: 44px; --width: 220px; --height: 104px; --rotate: -7deg;"></div>
+      <div class="reef-rock" style="--left: 18%; --bottom: 74px; --width: 150px; --height: 72px; --rotate: 9deg;"></div>
+      <div class="reef-rock" style="--left: 58%; --bottom: 52px; --width: 260px; --height: 118px; --rotate: 5deg;"></div>
+      <div class="reef-rock" style="--left: 77%; --bottom: 88px; --width: 180px; --height: 84px; --rotate: -10deg;"></div>
+      <div class="seaweed" style="--left: 9%; --bottom: 102px; --height: 126px;"></div>
+      <div class="seaweed" style="--left: 14%; --bottom: 90px; --height: 86px; animation-delay: -1s;"></div>
+      <div class="seaweed" style="--left: 64%; --bottom: 108px; --height: 116px; animation-delay: -1.8s;"></div>
+      <div class="seaweed" style="--left: 72%; --bottom: 82px; --height: 92px; animation-delay: -0.6s;"></div>
+      <div class="coral" style="--left: 25%; --bottom: 82px; --size: 82px;"></div>
+      <div class="coral" style="--left: 50%; --bottom: 64px; --size: 64px; filter: hue-rotate(48deg) drop-shadow(0 8px 10px rgba(0, 16, 24, 0.28));"></div>
+      <div class="coral" style="--left: 86%; --bottom: 92px; --size: 74px; filter: hue-rotate(118deg) drop-shadow(0 8px 10px rgba(0, 16, 24, 0.28));"></div>
+      <div class="shell-bed"><span>◖</span><span>◜</span><span>◠</span></div>
+    </div>
   </div>
 </body>
 </html>
