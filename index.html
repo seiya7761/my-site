@@ -48,7 +48,7 @@
     }
 
     .ocean-life {
-      z-index: 5;
+      z-index: 2;
       overflow: hidden;
     }
 
@@ -154,20 +154,48 @@
     .seafloor {
       position: relative;
       z-index: 2;
-      min-height: 420px;
-      margin-top: 18px;
+      min-height: clamp(360px, 54vw, 560px);
+      margin-top: 36px;
       overflow: hidden;
       pointer-events: none;
       background:
-        linear-gradient(180deg, rgba(5, 38, 53, 0.1), #031923);
+        linear-gradient(180deg, rgba(4, 39, 55, 0), rgba(3, 25, 35, 0.96));
+      box-shadow: inset 0 48px 58px rgba(3, 31, 47, 0.92);
+    }
+
+    .seafloor::before,
+    .seafloor::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .seafloor::before {
+      background:
+        linear-gradient(180deg, #03344c 0, rgba(3, 52, 76, 0.42) 16%, transparent 36%),
+        linear-gradient(104deg, transparent 0 24%, rgba(202, 255, 248, 0.16) 25% 30%, transparent 31%),
+        linear-gradient(80deg, transparent 0 58%, rgba(202, 255, 248, 0.12) 59% 64%, transparent 65%),
+        radial-gradient(ellipse at 50% 8%, rgba(218, 255, 246, 0.28), transparent 38%);
+      mix-blend-mode: screen;
+    }
+
+    .seafloor::after {
+      background:
+        radial-gradient(ellipse at 50% 68%, transparent 0 46%, rgba(1, 18, 28, 0.54) 86%),
+        linear-gradient(180deg, rgba(2, 31, 48, 0.58) 0, rgba(2, 29, 43, 0.18) 32%, rgba(1, 17, 25, 0.72) 100%),
+        linear-gradient(90deg, rgba(1, 20, 31, 0.68), transparent 18% 82%, rgba(1, 20, 31, 0.68));
     }
 
     .seafloor img {
       display: block;
       width: 100%;
-      min-height: 420px;
+      min-height: clamp(360px, 54vw, 560px);
       object-fit: cover;
       object-position: center bottom;
+      filter: saturate(0.78) hue-rotate(8deg) brightness(0.72) contrast(1.08);
+      transform: scale(1.03);
     }
 
     main {
