@@ -62,7 +62,8 @@
     }
 
     .ocean-life {
-      z-index: 1;
+      z-index: 4;
+      overflow: hidden;
     }
 
     .creature {
@@ -73,15 +74,18 @@
       color: rgba(238, 253, 255, 0.92);
       text-shadow: 0 6px 18px rgba(0, 16, 28, 0.42);
       filter: drop-shadow(0 8px 18px rgba(0, 20, 32, 0.24));
-      animation: swim var(--duration) linear infinite;
+      animation:
+        swim-across var(--duration) linear infinite,
+        swim-bob 4.6s ease-in-out infinite alternate;
       animation-delay: var(--delay);
-      transform: translateX(-16vw);
+      opacity: 0.9;
       white-space: nowrap;
     }
 
     .creature span {
       font-size: var(--size);
       line-height: 1;
+      display: inline-block;
     }
 
     .creature small {
@@ -95,31 +99,53 @@
     }
 
     .nautilus {
-      top: 19%;
+      top: 17%;
       --size: 4.2rem;
-      --duration: 34s;
-      --delay: -7s;
+      --duration: 28s;
+      --delay: -8s;
     }
 
     .shark {
-      top: 38%;
+      top: 33%;
       --size: 5.2rem;
-      --duration: 25s;
-      --delay: -14s;
+      --duration: 22s;
+      --delay: -13s;
     }
 
     .turtle {
-      top: 58%;
+      top: 62%;
       --size: 4.6rem;
-      --duration: 39s;
+      --duration: 32s;
       --delay: -20s;
     }
 
     .fish {
-      top: 28%;
+      top: 47%;
       --size: 2.7rem;
-      --duration: 21s;
-      --delay: -2s;
+      --duration: 18s;
+      --delay: -3s;
+    }
+
+    .school {
+      top: 24%;
+      --size: 2.2rem;
+      --duration: 16s;
+      --delay: -10s;
+    }
+
+    .jellyfish {
+      top: 72%;
+      --size: 3.1rem;
+      --duration: 30s;
+      --delay: -16s;
+    }
+
+    .reverse {
+      animation-name: swim-across-reverse, swim-bob;
+    }
+
+    .reverse span {
+      transform: scaleX(-1);
     }
 
     .bubbles {
@@ -331,16 +357,36 @@
       font-size: 0.9rem;
     }
 
-    @keyframes swim {
+    @keyframes swim-across {
       0% {
-        left: -18vw;
+        transform: translate3d(-22vw, 0, 0);
       }
       50% {
-        transform: translateX(0) translateY(-18px);
+        transform: translate3d(46vw, -18px, 0);
       }
       100% {
-        left: 112vw;
-        transform: translateX(0) translateY(10px);
+        transform: translate3d(118vw, 10px, 0);
+      }
+    }
+
+    @keyframes swim-across-reverse {
+      0% {
+        transform: translate3d(118vw, 0, 0);
+      }
+      50% {
+        transform: translate3d(48vw, 16px, 0);
+      }
+      100% {
+        transform: translate3d(-24vw, -10px, 0);
+      }
+    }
+
+    @keyframes swim-bob {
+      from {
+        margin-top: -8px;
+      }
+      to {
+        margin-top: 10px;
       }
     }
 
@@ -393,6 +439,10 @@
       .turtle {
         --size: 3.4rem;
       }
+
+      .ocean-life {
+        z-index: 2;
+      }
     }
   </style>
 </head>
@@ -400,9 +450,11 @@
   <div class="bubbles" aria-hidden="true"></div>
   <div class="ocean-life" aria-hidden="true">
     <div class="creature nautilus"><span>🐚</span><small>オウムガイ</small></div>
-    <div class="creature shark"><span>🦈</span><small>サメ</small></div>
+    <div class="creature shark reverse"><span>🦈</span><small>サメ</small></div>
     <div class="creature turtle"><span>🐢</span><small>カメ</small></div>
     <div class="creature fish"><span>🐠</span><small>熱帯魚</small></div>
+    <div class="creature school reverse"><span>🐟 🐟 🐟</span><small>魚群</small></div>
+    <div class="creature jellyfish"><span>🪼</span><small>クラゲ</small></div>
   </div>
   <div class="seafloor" aria-hidden="true">
     <div class="seaweed" style="left: 6%; --height: 118px;"></div>
