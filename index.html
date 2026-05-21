@@ -15,9 +15,10 @@
       line-height: 1.6;
       color: #e8fbff;
       background:
-        radial-gradient(circle at 18% 12%, rgba(155, 236, 245, 0.42), transparent 20rem),
-        radial-gradient(circle at 82% 18%, rgba(87, 196, 214, 0.28), transparent 18rem),
-        linear-gradient(180deg, rgba(7, 82, 112, 0.78), rgba(3, 52, 83, 0.94) 42%, #012f4a 74%, #062538),
+        radial-gradient(circle at 50% -8%, rgba(188, 255, 246, 0.5), transparent 22rem),
+        radial-gradient(circle at 12% 18%, rgba(37, 147, 162, 0.34), transparent 18rem),
+        radial-gradient(circle at 88% 20%, rgba(21, 104, 136, 0.36), transparent 20rem),
+        linear-gradient(180deg, rgba(3, 32, 50, 0.94), rgba(2, 42, 65, 0.96) 42%, #011f32 74%, #03131d),
         url("assets/ocean-hero.jpg") center top / cover fixed;
       min-height: 100vh;
       overflow-x: hidden;
@@ -29,15 +30,35 @@
       inset: 0;
       z-index: 0;
       background:
-        linear-gradient(104deg, transparent 0 12%, rgba(203, 247, 255, 0.12) 13%, transparent 24%),
-        linear-gradient(118deg, transparent 0 38%, rgba(203, 247, 255, 0.1) 39%, transparent 52%),
-        linear-gradient(96deg, transparent 0 70%, rgba(203, 247, 255, 0.08) 71%, transparent 84%);
+        linear-gradient(90deg, rgba(255, 255, 255, 0.16) 0 1px, transparent 1px calc(100% - 1px), rgba(255, 255, 255, 0.12) calc(100% - 1px)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0 1px, transparent 1px calc(100% - 1px), rgba(255, 255, 255, 0.1) calc(100% - 1px)),
+        linear-gradient(104deg, transparent 0 12%, rgba(203, 247, 255, 0.16) 13%, transparent 24%),
+        linear-gradient(118deg, transparent 0 38%, rgba(203, 247, 255, 0.12) 39%, transparent 52%),
+        linear-gradient(96deg, transparent 0 70%, rgba(203, 247, 255, 0.08) 71%, transparent 84%),
+        radial-gradient(ellipse at 50% 50%, transparent 0 56%, rgba(0, 8, 14, 0.54) 100%);
+      border: 16px solid rgba(2, 16, 26, 0.72);
+      box-shadow:
+        inset 0 0 0 1px rgba(176, 238, 245, 0.14),
+        inset 0 0 80px rgba(0, 8, 18, 0.58);
       animation: light-shift 14s ease-in-out infinite alternate;
       pointer-events: none;
     }
 
     body::after {
-      content: none;
+      content: "";
+      position: fixed;
+      left: 22px;
+      right: 22px;
+      top: 22px;
+      height: 34px;
+      z-index: 7;
+      border-radius: 999px;
+      background:
+        linear-gradient(90deg, transparent, rgba(221, 255, 255, 0.22) 14%, rgba(255, 255, 255, 0.06) 42%, transparent 76%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent);
+      filter: blur(0.2px);
+      opacity: 0.72;
+      pointer-events: none;
     }
 
     .ocean-life,
@@ -202,13 +223,33 @@
       position: relative;
       z-index: 4;
       max-width: 760px;
-      margin: 48px auto 0;
+      margin: 72px auto 0;
       padding: 32px;
-      background: rgba(6, 48, 70, 0.72);
+      background:
+        linear-gradient(180deg, rgba(8, 55, 76, 0.82), rgba(3, 34, 52, 0.86)),
+        radial-gradient(circle at 50% 0, rgba(139, 241, 247, 0.16), transparent 18rem);
       border-radius: 8px;
-      border: 1px solid rgba(172, 232, 239, 0.32);
-      box-shadow: 0 24px 60px rgba(0, 18, 32, 0.38);
-      backdrop-filter: blur(10px);
+      border: 1px solid rgba(180, 238, 242, 0.42);
+      box-shadow:
+        0 0 0 8px rgba(1, 18, 29, 0.38),
+        0 24px 70px rgba(0, 10, 18, 0.58),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(12px);
+    }
+
+    main::before {
+      content: "AQUARIUM EXHIBIT";
+      position: absolute;
+      left: 24px;
+      top: -38px;
+      padding: 7px 12px;
+      border: 1px solid rgba(145, 229, 237, 0.44);
+      border-radius: 6px;
+      background: rgba(2, 22, 34, 0.82);
+      color: #aef0f4;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
     }
 
     h1 {
@@ -221,7 +262,7 @@
       border-radius: 8px;
       color: #fff;
       background:
-        linear-gradient(120deg, rgba(2, 23, 36, 0.86), rgba(12, 103, 127, 0.38)),
+        linear-gradient(120deg, rgba(2, 17, 28, 0.9), rgba(12, 103, 127, 0.32)),
         url("assets/ocean-hero.jpg") center / cover;
       font-size: 2.4rem;
       line-height: 1.2;
@@ -234,12 +275,17 @@
       position: absolute;
       inset: 0;
       background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0 1px, transparent 1px calc(100% - 1px), rgba(255, 255, 255, 0.12) calc(100% - 1px)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px calc(100% - 1px), rgba(255, 255, 255, 0.12) calc(100% - 1px)),
         radial-gradient(circle at 72% 34%, rgba(255, 255, 255, 0.72) 0 4px, transparent 5px),
         radial-gradient(circle at 84% 52%, rgba(255, 255, 255, 0.58) 0 3px, transparent 4px),
         radial-gradient(circle at 66% 68%, rgba(255, 255, 255, 0.5) 0 3px, transparent 4px),
         linear-gradient(32deg, transparent 61%, rgba(255, 255, 255, 0.36) 61% 62%, transparent 62%),
         linear-gradient(143deg, transparent 57%, rgba(255, 255, 255, 0.3) 57% 58%, transparent 58%);
       pointer-events: none;
+      box-shadow:
+        inset 0 0 0 1px rgba(198, 246, 250, 0.14),
+        inset 0 0 58px rgba(0, 10, 18, 0.42);
     }
 
     h1 span {
@@ -322,6 +368,9 @@
       border-bottom: 2px solid #b8e0e5;
       padding-bottom: 6px;
       color: #aef0f4;
+      text-transform: uppercase;
+      font-size: 1.12rem;
+      letter-spacing: 0.04em;
     }
 
     h3 {
@@ -334,8 +383,10 @@
       margin-top: 14px;
       border: 1px solid rgba(129, 216, 226, 0.42);
       border-radius: 8px;
-      background: rgba(9, 70, 95, 0.64);
+      background:
+        linear-gradient(180deg, rgba(12, 75, 99, 0.68), rgba(4, 43, 65, 0.72));
       overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
 
     details.folder summary {
@@ -379,8 +430,10 @@
     .profile {
       padding: 16px 18px;
       border-left: 4px solid #62d5df;
-      background: rgba(4, 71, 94, 0.68);
+      background:
+        linear-gradient(90deg, rgba(4, 71, 94, 0.78), rgba(4, 71, 94, 0.42));
       font-size: 1.1rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
 
     .qa-list {
@@ -393,7 +446,9 @@
       padding: 16px 18px;
       border: 1px solid rgba(129, 216, 226, 0.34);
       border-radius: 8px;
-      background: rgba(5, 59, 82, 0.58);
+      background:
+        linear-gradient(180deg, rgba(5, 59, 82, 0.72), rgba(3, 39, 60, 0.68));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
 
     .qa-item h3 {
@@ -426,7 +481,9 @@
       border: 1px solid rgba(190, 244, 249, 0.48);
       border-radius: 8px;
       background: rgba(2, 36, 54, 0.72);
-      box-shadow: 0 14px 32px rgba(0, 18, 28, 0.26);
+      box-shadow:
+        0 14px 32px rgba(0, 18, 28, 0.26),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16);
       color: #e8fbff;
       font-weight: 700;
       text-align: center;
@@ -498,8 +555,13 @@
 
     @media (max-width: 760px) {
       main {
-        margin: 24px 14px 0;
+        margin: 58px 14px 0;
         padding: 18px;
+      }
+
+      main::before {
+        left: 14px;
+        top: -34px;
       }
 
       h1 {
@@ -542,6 +604,16 @@
         right: 10px;
         min-width: 92px;
         padding: 8px 10px;
+      }
+
+      body::before {
+        border-width: 8px;
+      }
+
+      body::after {
+        left: 12px;
+        right: 12px;
+        top: 12px;
       }
 
     }
