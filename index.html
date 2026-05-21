@@ -231,7 +231,8 @@
       overflow: hidden;
       margin-top: 0;
       margin-bottom: 24px;
-      padding: 72px 32px;
+      min-height: 230px;
+      padding: 44px 34px;
       border-radius: 8px;
       color: #fff;
       background:
@@ -259,6 +260,76 @@
     h1 span {
       position: relative;
       z-index: 1;
+    }
+
+    .hero-title {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      gap: 20px;
+      max-width: 440px;
+    }
+
+    .hero-title-text {
+      display: block;
+    }
+
+    .hero-person {
+      display: inline-grid;
+      gap: 4px;
+      width: fit-content;
+      padding: 10px 14px;
+      border-left: 3px solid #8df1f7;
+      background: linear-gradient(90deg, rgba(1, 35, 54, 0.78), rgba(1, 35, 54, 0.2));
+      box-shadow: 0 14px 28px rgba(0, 18, 28, 0.22);
+    }
+
+    .hero-person strong {
+      font-size: 1.25rem;
+      letter-spacing: 0;
+    }
+
+    .hero-person small {
+      color: #bdf6fb;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .hero-shell {
+      position: absolute;
+      right: 34px;
+      bottom: 26px;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 168px;
+      height: 168px;
+      border: 1px solid rgba(209, 250, 255, 0.42);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.84), transparent 16%),
+        radial-gradient(circle at 50% 50%, rgba(116, 219, 227, 0.24), rgba(4, 55, 82, 0.48) 62%, rgba(2, 24, 38, 0.68));
+      box-shadow:
+        0 24px 46px rgba(0, 12, 22, 0.36),
+        inset 0 0 34px rgba(176, 245, 255, 0.22);
+    }
+
+    .hero-shell::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 50%;
+      border: 1px solid rgba(219, 255, 255, 0.3);
+      border-left-color: transparent;
+      transform: rotate(-28deg);
+    }
+
+    .hero-shell::after {
+      content: "🐚";
+      font-size: 6.7rem;
+      line-height: 1;
+      filter: drop-shadow(0 16px 18px rgba(0, 18, 28, 0.42));
+      transform: rotate(-18deg);
     }
 
     h2 {
@@ -350,12 +421,6 @@
       margin: 0;
     }
 
-    .name {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: #b8fbff;
-    }
-
     .tag {
       display: inline-block;
       margin: 4px 6px 4px 0;
@@ -423,8 +488,32 @@
       }
 
       h1 {
-        padding: 52px 22px;
+        min-height: 250px;
+        padding: 34px 22px;
         font-size: 2rem;
+      }
+
+      .hero-title {
+        max-width: 100%;
+      }
+
+      .hero-shell {
+        right: 18px;
+        bottom: 20px;
+        width: 126px;
+        height: 126px;
+      }
+
+      .hero-shell::after {
+        font-size: 4.9rem;
+      }
+
+      .hero-person {
+        padding: 9px 12px;
+      }
+
+      .hero-person strong {
+        font-size: 1.08rem;
       }
 
       .nautilus,
@@ -447,7 +536,16 @@
     <div class="creature jellyfish"><span>🪼</span></div>
   </div>
   <main>
-    <h1><span>生物と材料を結びつける</span></h1>
+    <h1>
+      <span class="hero-title">
+        <span class="hero-title-text">生物と材料を結びつける</span>
+        <span class="hero-person">
+          <strong>長谷川誠也</strong>
+          <small>Seiya Hasegawa</small>
+        </span>
+      </span>
+      <span class="hero-shell" aria-hidden="true"></span>
+    </h1>
 
     <p class="profile">
       生物の構造や機能を参考に、環境に優しい材料開発に取り組んでいます。
@@ -455,7 +553,6 @@
 
     <h2>自己紹介</h2>
     <ul>
-      <li class="name">名前: 長谷川誠也</li>
       <li>所属:
         <ul>
           <li>慶應義塾大学理工学研究科 材料化学研究室</li>
