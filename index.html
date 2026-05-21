@@ -48,7 +48,7 @@
     }
 
     .ocean-life {
-      z-index: 2;
+      z-index: 5;
       overflow: hidden;
     }
 
@@ -74,6 +74,13 @@
       display: inline-block;
     }
 
+    .creature img {
+      display: block;
+      width: var(--width);
+      height: auto;
+      filter: drop-shadow(0 10px 14px rgba(0, 18, 28, 0.34));
+    }
+
     .nautilus {
       top: 17%;
       --size: 4.2rem;
@@ -97,16 +104,31 @@
 
     .fish {
       top: 47%;
-      --size: 2.7rem;
+      --width: 116px;
       --duration: 18s;
       --delay: -3s;
     }
 
     .school {
       top: 24%;
-      --size: 2.2rem;
+      --width: 88px;
       --duration: 16s;
       --delay: -10s;
+    }
+
+    .target-fish {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: crosshair;
+      pointer-events: auto;
+    }
+
+    .target-fish.caught {
+      opacity: 0;
+      transform: scale(0.2);
+      transition: opacity 180ms ease, transform 180ms ease;
+      pointer-events: none;
     }
 
     .jellyfish {
@@ -132,192 +154,20 @@
     .seafloor {
       position: relative;
       z-index: 2;
-      height: 420px;
+      min-height: 420px;
       margin-top: 18px;
       overflow: hidden;
       pointer-events: none;
       background:
-        linear-gradient(104deg, transparent 0 24%, rgba(209, 255, 247, 0.2) 25% 31%, transparent 32%),
-        linear-gradient(82deg, transparent 0 58%, rgba(209, 255, 247, 0.18) 59% 65%, transparent 66%),
-        radial-gradient(ellipse at 50% 8%, rgba(205, 255, 246, 0.38), transparent 42%),
-        linear-gradient(180deg, rgba(36, 173, 181, 0.18) 0, rgba(8, 92, 112, 0.56) 34%, rgba(4, 39, 55, 0.94) 82%, #031923 100%);
+        linear-gradient(180deg, rgba(5, 38, 53, 0.1), #031923);
     }
 
-    .seafloor::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 74px;
-      height: 270px;
-      background:
-        radial-gradient(ellipse at 16% 84%, rgba(12, 63, 75, 0.88) 0 22%, transparent 23%),
-        radial-gradient(ellipse at 37% 74%, rgba(14, 82, 94, 0.58) 0 17%, transparent 18%),
-        radial-gradient(ellipse at 61% 76%, rgba(11, 74, 87, 0.62) 0 18%, transparent 19%),
-        radial-gradient(ellipse at 86% 82%, rgba(10, 58, 72, 0.9) 0 24%, transparent 25%),
-        linear-gradient(180deg, transparent 0, rgba(5, 34, 47, 0.78) 72%, transparent 73%);
-      filter: blur(0.4px);
-    }
-
-    .seafloor::after {
-      content: "";
-      position: absolute;
-      left: -8%;
-      right: -8%;
-      bottom: -24px;
-      height: 210px;
-      background:
-        radial-gradient(ellipse at 50% 22%, rgba(237, 220, 164, 0.82) 0 18%, transparent 19%),
-        radial-gradient(ellipse at 17% 66%, rgba(34, 48, 40, 0.72) 0 24%, transparent 25%),
-        radial-gradient(ellipse at 83% 66%, rgba(32, 45, 39, 0.76) 0 25%, transparent 26%),
-        radial-gradient(ellipse at 42% 52%, rgba(71, 91, 73, 0.36) 0 2px, transparent 3px),
-        radial-gradient(ellipse at 55% 42%, rgba(71, 91, 73, 0.32) 0 2px, transparent 3px),
-        linear-gradient(170deg, transparent 0 20%, #6f715a 21% 40%, #8d8361 41% 58%, #3c4436 59% 100%);
-      border-radius: 52% 48% 0 0 / 58% 58% 0 0;
-      box-shadow: inset 0 26px 42px rgba(255, 249, 203, 0.12);
-    }
-
-    .reef {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-    }
-
-    .reef::before,
-    .reef::after {
-      content: "";
-      position: absolute;
-      bottom: 24px;
-      width: 36%;
-      height: 250px;
-      background:
-        radial-gradient(circle at 18% 76%, #f4a26e 0 22px, transparent 23px),
-        radial-gradient(circle at 36% 62%, #d98cae 0 20px, transparent 21px),
-        radial-gradient(circle at 58% 72%, #6dbb9b 0 26px, transparent 27px),
-        radial-gradient(circle at 76% 58%, #b9be7b 0 24px, transparent 25px),
-        radial-gradient(ellipse at 48% 96%, #2d443d 0 54%, transparent 55%);
-      filter: drop-shadow(0 16px 16px rgba(0, 12, 18, 0.26));
-    }
-
-    .reef::before {
-      left: -5%;
-      transform: rotate(-4deg);
-    }
-
-    .reef::after {
-      right: -5%;
-      transform: scaleX(-1) rotate(-4deg);
-    }
-
-    .reef-rock {
-      position: absolute;
-      bottom: var(--bottom);
-      left: var(--left);
-      width: var(--width);
-      height: var(--height);
-      border-radius: 52% 48% 42% 38%;
-      background:
-        radial-gradient(circle at 36% 28%, rgba(255, 255, 255, 0.13) 0 10%, transparent 11%),
-        radial-gradient(circle at 68% 56%, rgba(0, 0, 0, 0.18) 0 16%, transparent 17%),
-        linear-gradient(140deg, #596d68, #22352f 72%, #14231f);
-      box-shadow:
-        inset 16px 18px 24px rgba(255, 255, 255, 0.08),
-        0 18px 26px rgba(0, 13, 18, 0.34);
-      transform: rotate(var(--rotate));
-    }
-
-    .seaweed {
-      position: absolute;
-      bottom: var(--bottom);
-      left: var(--left);
-      width: 18px;
-      height: var(--height);
-      border-radius: 100% 0 100% 0;
-      background: linear-gradient(180deg, #5fc678, #147d67);
-      transform-origin: bottom center;
-      animation: sway 4.8s ease-in-out infinite alternate;
-    }
-
-    .seaweed::before,
-    .seaweed::after {
-      content: "";
-      position: absolute;
-      bottom: 20%;
-      width: 14px;
-      height: 52%;
-      border-radius: 100% 0 100% 0;
-      background: linear-gradient(180deg, #78d586, #1b866c);
-    }
-
-    .seaweed::before {
-      left: -12px;
-      transform: rotate(-22deg);
-    }
-
-    .seaweed::after {
-      right: -10px;
-      transform: rotate(28deg);
-    }
-
-    .coral {
-      position: absolute;
-      bottom: var(--bottom);
-      left: var(--left);
-      z-index: 3;
-      width: var(--size);
-      height: var(--size);
-      background:
-        radial-gradient(circle at 50% 20%, #ff8790 0 9px, transparent 10px),
-        radial-gradient(circle at 28% 38%, #ffb15e 0 8px, transparent 9px),
-        radial-gradient(circle at 70% 42%, #f46b8e 0 8px, transparent 9px),
-        linear-gradient(90deg, transparent 0 32px, #ff7e78 33px 44px, transparent 45px),
-        linear-gradient(34deg, transparent 0 31px, #ffad5e 32px 42px, transparent 43px),
-        linear-gradient(144deg, transparent 0 30px, #f56c97 31px 41px, transparent 42px);
-      filter: drop-shadow(0 8px 10px rgba(0, 16, 24, 0.28));
-    }
-
-    .shell-bed {
-      position: absolute;
-      right: 15%;
-      bottom: 42px;
-      z-index: 2;
-      display: flex;
-      gap: 12px;
-      color: rgba(244, 229, 196, 0.88);
-      font-size: 1.8rem;
-      filter: drop-shadow(0 8px 8px rgba(0, 13, 20, 0.3));
-      transform: rotate(-7deg);
-    }
-
-    .tube-coral {
-      position: absolute;
-      bottom: var(--bottom);
-      left: var(--left);
-      z-index: 4;
-      display: flex;
-      align-items: flex-end;
-      gap: 7px;
-      transform: rotate(var(--rotate));
-    }
-
-    .tube-coral span {
+    .seafloor img {
       display: block;
-      width: 18px;
-      height: var(--height);
-      border-radius: 999px 999px 6px 6px;
-      background:
-        radial-gradient(circle at 50% 12%, rgba(255, 235, 194, 0.86) 0 4px, transparent 5px),
-        linear-gradient(180deg, #f6a05f, #bd633e);
-      box-shadow: inset -5px 0 8px rgba(87, 29, 25, 0.22);
-    }
-
-    .seafloor-detail {
-      position: absolute;
-      z-index: 5;
-      color: rgba(238, 193, 132, 0.9);
-      font-size: var(--size);
-      filter: drop-shadow(0 8px 8px rgba(0, 13, 20, 0.32));
-      transform: rotate(var(--rotate));
+      width: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      object-position: center bottom;
     }
 
     main {
@@ -538,6 +388,36 @@
       font-size: 0.9rem;
     }
 
+    .score-board {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 8;
+      min-width: 112px;
+      padding: 10px 14px;
+      border: 1px solid rgba(190, 244, 249, 0.48);
+      border-radius: 8px;
+      background: rgba(2, 36, 54, 0.72);
+      box-shadow: 0 14px 32px rgba(0, 18, 28, 0.26);
+      color: #e8fbff;
+      font-weight: 700;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .score-board small {
+      display: block;
+      color: #aef0f4;
+      font-size: 0.72rem;
+      letter-spacing: 0;
+    }
+
+    .score-board span {
+      display: block;
+      font-size: 1.45rem;
+      line-height: 1.1;
+    }
+
     @keyframes swim-across-reverse {
       0% {
         transform: translate3d(118vw, 0, 0);
@@ -629,18 +509,29 @@
         --size: 3.4rem;
       }
 
+      .score-board {
+        top: 10px;
+        right: 10px;
+        min-width: 92px;
+        padding: 8px 10px;
+      }
+
     }
   </style>
 </head>
 <body>
   <div class="bubbles" aria-hidden="true"></div>
-  <div class="ocean-life" aria-hidden="true">
-    <div class="creature nautilus"><span>🐚</span></div>
-    <div class="creature shark"><span>🦈</span></div>
-    <div class="creature turtle"><span>🐢</span></div>
-    <div class="creature fish"><span>🐠</span></div>
-    <div class="creature school"><span>🐟 🐟 🐟</span></div>
-    <div class="creature jellyfish"><span>🪼</span></div>
+  <div class="score-board" aria-live="polite">
+    <small>POINT</small>
+    <span id="score">0</span>
+  </div>
+  <div class="ocean-life">
+    <div class="creature nautilus" aria-hidden="true"><span>🐚</span></div>
+    <div class="creature shark" aria-hidden="true"><span>🦈</span></div>
+    <div class="creature turtle" aria-hidden="true"><span>🐢</span></div>
+    <button class="creature fish target-fish" type="button" aria-label="クマノミをつかまえる"><img src="クマノミ.png" alt=""></button>
+    <button class="creature school target-fish" type="button" aria-label="クマノミをつかまえる"><img src="クマノミ.png" alt=""></button>
+    <div class="creature jellyfish" aria-hidden="true"><span>🪼</span></div>
   </div>
   <main>
     <h1>
@@ -740,32 +631,27 @@
     </details>
   </main>
   <div class="seafloor" aria-hidden="true">
-    <div class="reef">
-      <div class="reef-rock" style="--left: -2%; --bottom: 36px; --width: 260px; --height: 128px; --rotate: -7deg;"></div>
-      <div class="reef-rock" style="--left: 13%; --bottom: 92px; --width: 170px; --height: 88px; --rotate: 9deg;"></div>
-      <div class="reef-rock" style="--left: 62%; --bottom: 48px; --width: 290px; --height: 136px; --rotate: 5deg;"></div>
-      <div class="reef-rock" style="--left: 81%; --bottom: 112px; --width: 190px; --height: 92px; --rotate: -10deg;"></div>
-      <div class="seaweed" style="--left: 6%; --bottom: 132px; --height: 146px;"></div>
-      <div class="seaweed" style="--left: 12%; --bottom: 124px; --height: 104px; animation-delay: -1s;"></div>
-      <div class="seaweed" style="--left: 77%; --bottom: 134px; --height: 134px; animation-delay: -1.8s;"></div>
-      <div class="seaweed" style="--left: 88%; --bottom: 112px; --height: 108px; animation-delay: -0.6s;"></div>
-      <div class="coral" style="--left: 18%; --bottom: 102px; --size: 92px;"></div>
-      <div class="coral" style="--left: 55%; --bottom: 86px; --size: 72px; filter: hue-rotate(48deg) drop-shadow(0 8px 10px rgba(0, 16, 24, 0.28));"></div>
-      <div class="coral" style="--left: 83%; --bottom: 126px; --size: 86px; filter: hue-rotate(118deg) drop-shadow(0 8px 10px rgba(0, 16, 24, 0.28));"></div>
-      <div class="tube-coral" style="--left: 3%; --bottom: 54px; --rotate: 10deg;">
-        <span style="--height: 82px;"></span>
-        <span style="--height: 118px;"></span>
-        <span style="--height: 96px;"></span>
-      </div>
-      <div class="tube-coral" style="--left: 70%; --bottom: 64px; --rotate: -8deg;">
-        <span style="--height: 92px;"></span>
-        <span style="--height: 68px;"></span>
-        <span style="--height: 110px;"></span>
-      </div>
-      <div class="shell-bed"><span>◖</span><span>◜</span><span>◠</span></div>
-      <div class="seafloor-detail" style="--size: 2.3rem; --rotate: 18deg; left: 87%; bottom: 44px;">☆</div>
-      <div class="seafloor-detail" style="--size: 2rem; --rotate: -8deg; left: 58%; bottom: 54px;">♋</div>
-    </div>
+    <img src="海底.png" alt="">
   </div>
+  <script>
+    const scoreEl = document.getElementById("score");
+    let score = 0;
+
+    document.querySelectorAll(".target-fish").forEach((fish) => {
+      fish.addEventListener("click", () => {
+        if (fish.classList.contains("caught")) {
+          return;
+        }
+
+        score += 1;
+        scoreEl.textContent = score;
+        fish.classList.add("caught");
+
+        window.setTimeout(() => {
+          fish.classList.remove("caught");
+        }, 1200);
+      });
+    });
+  </script>
 </body>
 </html>
